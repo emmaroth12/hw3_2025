@@ -9,10 +9,75 @@
     <link rel="stylesheet" type="text/css" href="css/starter_style.css">
     <title>Newer Company Inc.</title>
   </head>
+  <style>
+  header {
+  background: url('images/header.jpg') no-repeat center center;
+  background-size: cover;
+  padding: 50px 0;
+  text-align: center;
+  position: relative;
+  width: 100%; 
+}
+
+.header-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+  background: none;
+}
+
+header h1 {
+  position: absolute;
+  top: 30%; /* Adjust as needed */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white; /* Change text color to make it stand out against the image */
+  font-size: 3rem; /* Adjust font size as needed */
+  z-index: 1; /* Ensures it stays on top of the background image */
+}
+
+header p {
+  position: absolute; /* Keeps it inside the header */
+  top: 35%; /* Moves the paragraph below the header text */
+  left: 50%;
+  transform: translateX(-50%); /* Centers the paragraph horizontally */
+  color: white; /* Text color */
+  font-size: 1.25rem; /* Adjust size as needed */
+  max-width: 700px; /* Optional: Control the width of the paragraph */
+  margin-top: 20px; /* Adds space between the h1 and p elements */
+}
+
+nav {
+  width: 100%; /* Make sure the nav spans the full width */
+  background-color: white (0, 0, 0, 0.5); /* Optional: Add a background color to make it visible */
+  padding: 15px 0; /* Adjust the padding to your liking */
+  text-align: right; 
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+</style>
   <body>
     <div class="skip"><a href="">Skip to Main Content</a></div>
     <header>
-      <nav>
+      <div class="header-content">
+        <h1>New Company Inc.</h1>
+        <p>Creating a better workspace by transforming the office paradigm. We're helping employees make their mark on the world through effective workspace management.  We would love to meet you and explore collaboration opportunities.</p>
+        <nav>
           <ul>
             <li><a href="">About</a></li>
             <li><a href="">Method</a></li>
@@ -20,13 +85,9 @@
             <li><a href="">Contact</a></li>
           </ul>
         </nav>
+      </div>
     </header>
     <main class="container" id = "main">
-      <div class = overview>
-        <h1>New Company Inc.</h1>
-        <p>Creating a better workspace by transforming the office paradigm. We're helping employees make their mark on the world through effective workspace management.  We would love to meet you and explore collaboration opportunities.</p>
-      </div>
-
       <div class="about-image" id="about">
         <img src="images/about.jpg" alt=""/>
       </div>
