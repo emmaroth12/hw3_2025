@@ -100,10 +100,10 @@ header::before {
 /* Add your media query here */
 @media screen and (max-width: 899px) {
   .container {
-    grid-template-columns: 1fr; /* One column on mobile */
+    grid-template-columns: 1fr; /* One column layout */
+    gap: 8px; /* Narrow gap for a compact layout */
   }
 
-  /* Adjust the header image or text to fit mobile screen */
   header {
     height: auto;
     background-attachment: scroll;
@@ -111,30 +111,24 @@ header::before {
 
   .about, .method, .clients, .contact {
     grid-column: span 1; /* Full width */
-    padding: 10px; /* Adjust padding for smaller screens */
+    padding: 10px; /* Smaller padding for mobile */
   }
 
-  /* Adjust the images to fit better on mobile */
   .about-image, .method-image, .clients-image, .contact-image {
-    max-height: 400px; /* Reduce height of images */
+    width: 100%;
+    height: auto;
+    max-height: 400px; /* Reduce height fit */
   }
 
-  /* Adjust font size or spacing if needed */
   header h1 {
-    font-size: 2rem; /* Smaller font size for mobile */
+    font-size: 2rem; /* Smaller font size for header */
   }
 
-  header p {
-    font-size: 1rem; /* Smaller text for mobile */
+  header p,
+  .text-block,
+  .about, .method, .clients, .contact {
+    font-size: 1rem; /* Base font size for content */
   }
-}
-
-/* Step 9: Write the selector/rule property to style the nav element */
-nav {
-  position: absolute;
-  top: 30px;
-  right: 0;
-  padding: 30px 0;
 }
 
 /* Step 10: Write the selector/rule property to update the .container class */
@@ -159,3 +153,4 @@ nav {
   max-height: 250px;
   overflow: visible;
 }
+
