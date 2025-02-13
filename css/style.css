@@ -100,34 +100,40 @@ header::before {
 /* Add your media query here */
 @media screen and (max-width: 899px) {
   .container {
-    grid-template-columns: 1fr; /* One column layout */
-    gap: 8px; /* Narrow gap for a compact layout */
+    grid-template-columns: 1fr; /* One-column layout for mobile */
   }
 
-  header {
-    height: auto;
-    background-attachment: scroll;
-  }
-
+  /* Stack images and text together */
   .about, .method, .clients, .contact {
-    grid-column: span 1; /* Full width */
-    padding: 10px; /* Smaller padding for mobile */
+    grid-column: span 1;
+    position: relative; /* Allows text to overlay */
+    background-color: rgba(255, 255, 255, 0.7); /* Add transparency */
+    padding: 20px;
   }
 
+  /* Use the images as background images */
   .about-image, .method-image, .clients-image, .contact-image {
-    width: 100%;
-    height: auto;
-    max-height: 400px; /* Reduce height fit */
+    grid-column: span 1;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
   }
 
-  header h1 {
-    font-size: 2rem; /* Smaller font size for header */
-  }
+  /* Assign the images as background images */
+  .about-image { background-image: url('images/about.jpg'); }
+  .method-image { background-image: url('images/method.jpg'); }
+  .clients-image { background-image: url('images/clients.jpg'); }
+  .contact-image { background-image: url('images/contact.jpg'); }
 
-  header p,
-  .text-block,
-  .about, .method, .clients, .contact {
-    font-size: 1rem; /* Base font size for content */
+  /* Position the text over the image */
+  .text-block {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent for readability */
+    padding: 20px;
   }
 }
 
