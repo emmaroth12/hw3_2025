@@ -1,33 +1,52 @@
-/* Step 1: Write selector/rule property to add an underline when
-links in the navigation are in the hover or focus state.*/
+/* Existing CSS */
+
+/* Requirement 1: Add an underline under any link in the nav that is in the hover or focus state */
+nav a {
+  color: #000; /* Ensure links have good contrast with background */
+}
+
 nav a:hover,
 nav a:focus {
-  text-decoration: underline;
+  text-decoration: underline; /* Underline on hover/focus */
+  color: #000; /* Maintain visibility on hover/focus */
 }
 
-/* Step 2a: Write selector/rule property to position the default position for the skip class element*/
+/* Requirement 2: Skip link styling (positioned 40px above its parent element, hidden by default, visible on focus) */
 .skip a {
   position: absolute;
-  top: -40px; /* Hidden by default */
+  top: -40px; /* Keeps the link offscreen by default */
   left: 0;
   z-index: 1000;
-  background-color: #000;
-  color: #fff;
-  padding: 10px;
+  background-color: #000; /* Black background */
+  color: #FFF; /* White text */
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 16px; /* Adjust size to ensure visibility */
   text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  opacity: 0; /* Hidden until focused */
 }
 
-/* Step 2b: Write selector/rule property to position the skip class element when it is in focus*/
+/* When the link is focused (for keyboard navigation), it becomes visible */
 .skip a:focus {
-  top: 20px;
+  top: 10px; /* Moves into view */
+  left: 10px;
+  opacity: 1; /* Make it visible */
+  background-color: #000; /* Ensure a high contrast black background */
+  color: #FFF; /* White text */
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 16px; /* Same size for consistency */
+  border-radius: 5px;
 }
 
-/* Step 3: Write selector/rule property to style all elements when in focus*/
+/* Requirement 3: Any element in focus should have a 2px solid border on all sides */
 *:focus {
   outline: 2px solid #00f; /* Blue outline for keyboard users */
 }
 
-/* Step 4: Write selector/rule property to style the container */
+/* Requirement 4: Mobile view .container styling - 3 columns: 1fr 5fr 1fr, 15px gap */
 .container {
   display: grid;
   grid-template-columns: 1fr 5fr 1fr; /* Three-column structure */
@@ -35,10 +54,9 @@ nav a:focus {
   grid-template-rows: auto;
 }
 
-/* Step 5: Write selector/rule property to add the background image to the 
-first div in the grid  and place it in the grid. */
+/* Requirement 5: Mobile view - Style the first child of the container (header) to span all columns */
 header {
-  grid-column: span 3;
+  grid-column: span 3; /* Span all columns */
   background-image: url('images/header.jpg');
   background-position: center;
   background-size: cover;
@@ -57,96 +75,133 @@ header::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.1); /* Dark overlay */
 }
 
-/* Step 6 and 7: Write the selector/rule properties to place the next elements in the next
- four rows in the grid. */
+/* Ensure header text appears white and above the overlay */
+header h1, 
+header p {
+  position: relative;
+  z-index: 1; /* Ensures text is above the overlay */
+  color: white; /* Explicitly set white color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+}
+
+/* Requirement 6 & 7: Style the other children of the container (.about, .method, .clients, .contact) */
 .about,
 .method,
 .clients,
 .contact {
-  grid-column: 2 / span 1;
+  grid-column: 2 / span 1; /* Span 1 column in the 2nd column */
   background-color: white;
   border: 10px solid black;
   padding: 15px;
+  color: black; /* Ensure text has good contrast */
 }
 
-.about { grid-row: 2; }
-.method { grid-row: 3; }
-.clients { grid-row: 4; }
-.contact { grid-row: 5; }
+.about { grid-row: 2; } /* About starts in row 2 */
+.method { grid-row: 3; } /* Method starts in row 3 */
+.clients { grid-row: 4; } /* Clients starts in row 4 */
+.contact { grid-row: 5; } /* Contact starts in row 5 */
 
+/* Style for images in the container - cover all columns, max height 600px */
 .about-image, .method-image, .clients-image, .contact-image {
-  grid-column: span 3;
+  grid-column: span 3; /* Span all columns */
   max-height: 600px;
   object-fit: cover;
-  overflow: hidden;
+  overflow: hidden; /* Hide overflow */
 }
 
-.about-image { grid-row: 2; }
-.method-image { grid-row: 3; }
-.clients-image { grid-row: 4; }
-.contact-image { grid-row: 5; }
+.about-image { grid-row: 2; } /* About image starts in row 2 */
+.method-image { grid-row: 3; } /* Method image starts in row 3 */
+.clients-image { grid-row: 4; } /* Clients image starts in row 4 */
+.contact-image { grid-row: 5; } /* Contact image starts in row 5 */
 
-/* Step 8: Write the selector/rule property to style the .text-block class. */
+/* Requirement 8: .text-block styling - centered horizontally and vertically with centered text */
 .text-block {
   display: grid;
   place-items: center; /* Centers content horizontally and vertically */
   text-align: center;
   padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7); /* Darker semi-transparent background for readability */
+  color: black;
+   /* Ensure text has good contrast */
 }
 
-/* Add your media query here */
+/* Requirement 9: Media query for mobile view (screen <= 899px) - Adjust layout */
 @media screen and (max-width: 899px) {
+  /* Adjust grid layout to one column for mobile view */
   .container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    gap: 10px;
+    grid-template-columns: 1fr 5fr 1fr;
+    gap: 15px;
   }
 
+  /* Adjust header height for mobile */
+  header {
+    height: 200px;
+  }
+
+  /* Ensure text blocks have enough space and padding */
   .about, .method, .clients, .contact {
-    grid-column: 1 / -1;
-    width: 90%;
-    margin: auto;
+    position: relative; /* So text boxes sit over images */
+    z-index: 1;
+    grid-column: span 1;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Transparent background */
+    margin-bottom: 15px; /* Added space between sections */
   }
 
+  /* Stack images and text */
+  .about-image, .method-image, .clients-image, .contact-image {
+    grid-column: span 1;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Apply background images dynamically */
+  .about-image { background-image: url('images/about.jpg'); }
+  .method-image { background-image: url('images/method.jpg'); }
+  .clients-image { background-image: url('images/clients.jpg'); }
+  .contact-image { background-image: url('images/contact.jpg'); }
+
+  /* Ensure text over images is readable */
   .text-block {
-    max-width: 90%;
-    overflow-wrap: break-word;
-    text-align: center;
-  }
-
-  nav {
-    display: block;
-    width: 100%;
-    text-align: center;
-    position: static;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark background for readability */
+    color: white;
+    font-size: 14px;
+    width: 100%; /* Ensure it spans the full width */
+    max-height: none; /* Allow scrolling without restriction */
+    overflow-y: scroll;  /* Allow scrolling for longer content */
   }
 }
 
-/* Step 10: Write the selector/rule property to update the .container class */
+/* Requirement 10: Media query for larger view (screen >= 900px) */
 @media screen and (min-width: 900px) {
+  /* .container uses grid with five columns */
   .container {
     grid-template-columns: 50px auto 500px auto 50px;
   }
 }
 
-/* Step 11 and 12: Update the grid-column property of the grid's children (where-needed)*/
+/* Requirement 11 & 12: Update grid layout and child elements in the larger view */
 @media screen and (min-width: 900px) {
   .about, .clients, .method-image, .contact-image {
-    grid-column: 3 / span 2;
+    grid-column: 3 / span 2; /* Span 2 columns starting from column 3 */
   }
   .method, .contact, .about-image, .clients-image {
-    grid-column: 2 / span 2;
+    grid-column: 2 / span 2; /* Span 2 columns starting from column 2 */
   }
 }
 
-/* Step 13: Write the selector/rule property to update the .text-block class */
+/* Requirement 13: Update .text-block class for larger view */
 .text-block {
   max-height: 250px;
-  overflow: visible;
+  overflow: visible; /* Ensure content stays visible */
 }
 
 
